@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Biodata Example</title>
+</head>
+<body>
+  <script>
+    // Using const for values that don’t change
+    const name = "John Doe";
+    const age = 30;
+    const occupation = "Software Developer";
+    const email = "john.doe@example.com";
+    const phoneNumber = "123-456-7890";
+    const instituteName = "Jawan Pakistan";
+
+    // Using let for values that may change later
+    let city = "Karachi";
+    let education = "ABC";
+
+    // Template literal for biodata
+    let biodata = `
+      Name: ${name} <br>
+      Age: ${age} <br>
+      Occupation: ${occupation} <br>
+      Email: ${email} <br>
+      Phone Number: ${phoneNumber} <br>
+      Institute Name: ${instituteName} <br>
+      Education: ${education} <br>
+      City: ${city}
+    `;
+
+    // Output
+    document.write(biodata);
+  </script>
+</body>
+</html>
