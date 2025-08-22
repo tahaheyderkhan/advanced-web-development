@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mark Sheet</title>
+</head>
+<body>
+  <script>
+    const totalMarks = 300;  
+
+    let english = 75;
+    let math = 85;
+    let science = 65;
+
+    let obtainedMarks = english + math + science;
+    let percentage = (obtainedMarks / totalMarks) * 100;
+
+    let grade;
+    if (percentage >= 80) {
+      grade = "A+";
+    } else if (percentage >= 70) {
+      grade = "A";
+    } else if (percentage >= 60) {
+      grade = "B";
+    } else if (percentage >= 50) {
+      grade = "C";
+    } else {
+      grade = "Fail";
+    }
+
+    let result = `
+      <h2>Mark Sheet</h2>
+      English: ${english} <br>
+      Math: ${math} <br>
+      Science: ${science} <br><br>
+      Total Marks: ${totalMarks} <br>
+      Obtained Marks: ${obtainedMarks} <br>
+      Percentage: ${percentage.toFixed(2)}% <br>
+      Grade: ${grade}
+    `;
+
+    document.write(result);
+  </script>
+</body>
+</html>
