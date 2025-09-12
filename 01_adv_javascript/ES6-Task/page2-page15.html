@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page2-page15</title>
+</head>
+<body>
+    <script>
+                // ********  GLOBAL SCOPE ********
+
+        //----------1. Declare a variable using var (outside any function/block)
+var myVar = "Hello, I am Abdul";
+
+//----------2.  Declare a variable using let (outside any function/block)
+let myLet = "Hello, I am Haseeb";
+
+//----------3.  Declare a variable using const (outside any function/block)
+const myConst = "Hello, I am Qazi";
+
+// Log all three to the console
+console.log(myLet);  
+console.log(myVar);  
+console.log(myConst); 
+
+// Check if they are accessible globally
+console.log(window.myVar);   // attached to global object
+console.log(window.myLet);  
+console.log(window.myConst); 
+
+
+                        // ********  FUNCTION SCOPE ********
+
+function myFunction() {
+                        // Declare a variable using var inside the function
+  var varInside = "I am var inside function";
+
+                        // Declare a variable using let inside the function
+  let letInside = "I am let inside function";
+
+                        // Declare a variable using const inside the function
+  const constInside = "I am const inside function";
+
+                        // You can access them here
+  console.log(varInside);   
+      console.log(letInside);   
+  console.log(constInside); 
+}
+myFunction();
+console.log(varInside);   
+console.log(letInside);   
+console.log(constInside); 
+
+//Question: What do you observe ?
+
+//AAnwser: Variables declared with var, let, and const inside a function are function-scoped.
+
+
+                        // ********  BLOCK SCOPE ********
+
+    if (true) {
+  var varBlock = "I am var inside block";
+  let letBlock = "I am let inside block";
+  const constBlock = "I am const inside block";
+}
+
+console.log(varBlock);  // var is NOT block-scoped)
+console.log(letBlock);   
+console.log(constBlock); 
+        // letblock and constBlock are not accessible outside the block
+
+//Question: What do you observe ?
+//Answer: Variables declared with let and const inside a block are block-scoped.
+
+
+
+
+                // ********  HOISTING WITH var ********
+console.log(myVar);  
+var myVar = 10;      // hoisting ki wajah se error nahi aayega
+
+
+
+
+
+
+                // ********  HOISTING WITH LET AND CONST ********
+
+                
+console.log(myLet); 
+//let myLet = 20;             // hoisting ki wajah se error aayega isliay comment kiya hai
+console.log(myVar); 
+
+
+console.log(myConst); 
+//const myConst = 30;        // hoisting ki wajah se error aayega isliay comment kiya hai
+console.log(myVar); 
+
+
+
+                    // ********  Re-declaration ********
+    // Using var
+var x = 5;
+var x = 10;   // ye allowed hai
+
+// Using let
+// let y = 5;        // ye allowed hai isliay comment kiya hai
+// let y = 10;       // error aayega kionki let re-declaration allow nahi karta isliay comment kiya hai
+
+// Using const
+// const z = 5;        // ye allowed hai isliay comment kiya hai
+// const z = 10;            // error aayega kionki const re-declaration allow nahi karta isliay comment kiya hai
+
+
+
+
+                    // ********  Re-assignment ******** 
+
+
+                    // var → reassignable
+var a = 100;
+a = 200;      // Worke
+
+                    // let → reassignable
+let b = 300;
+b = 400;      // Works
+
+const c = 500;
+c = 600;      // error aayega kionki const re-assignment allow nahi karta 
+
+
+
+//                  ************Temporal Dead Zone (TDZ)************
+
+{
+  console.log(myLetTDZ);   // Error
+  let myLetTDZ = "hello";
+
+  console.log(myConstTDZ); // Error
+  const myConstTDZ = "world";
+}
+
+
+// ************* When to use var, let, const**************
+
+
+// Good use case for var
+var name = "Qazi";
+console.log("Name is:", name);
+name = "Doe";  // re-assignable
+console.log("Updated Name is:", name);
+
+
+
+//Good use case for let
+for (let i = 0; i < 3; i++) {
+  console.log("Inside loop:", i);
+}
+console.log("Outside loop:", i);  //error aayega kionki i block-scoped hai
+
+
+
+//Good use case for const
+const pi = 3.14159;
+console.log("Value of pi:", pi);
+//pi = 3.14; // error aayega kionki pi const hai
+
+
+// ***************  String Interpolation ************
+let firstName = "Abdul";
+let lastName = "Haseeb";
+let fullName = `${firstName} ${lastName}`;
+console.log(fullName);
+
+// *************     Multi-line Strings*******************
+let address = `House # 12
+Street # 5
+Karachi, Pakistan`;
+console.log(address);
+
+// ******************** Simple Expressions******************
+let num1 = 10;
+let num2 = 20;
+let sum = `${num1} + ${num2} = ${num1 + num2}`;
+console.log(sum);
+
+//********************** Function Calls ****************
+function multiply(a, b) {
+  return a * b;
+}
+let product = `Product of 5 and 6 is ${multiply(5, 6)}`;
+console.log(product);
+
+//******************** Tagged Template ********************
+function myTag(strings, ...values) {
+  console.log(strings, values);
+}
+myTag`Hello ${firstName}, your age is ${22}`;
+
+
+    </script>
+</body>
+</html>

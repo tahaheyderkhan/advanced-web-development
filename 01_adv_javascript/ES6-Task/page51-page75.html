@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>page51-page75      </title>
+  <style></style>
+</head>
+<body>
+<script>
+// -------- Basic Destructuring --------
+let person = {name:"Hamza", age:25, city:"Karachi"};
+let {name, age, city} = person; 
+console.log(name, age, city);// direct values nikaal li
+
+
+
+// -------- Renaming Variables
+let car = {make:"Toyota", model:"Corolla", year:2020};
+let {make:carMake, model:carModel, year:carYear} = car; // variable rename kr diye
+console.log(carMake, carModel, carYear);
+
+
+// -------- Default Valu --------
+let settings = {theme:"dark"};
+let {theme, language="English"} = settings; //
+console.log(theme, language);// language ki default value use ho gi
+
+
+// -------- Array of Arrays --------
+let nestedArray = [[1,2],[3,4],[5,6]];
+let [[a],[b],[c]] = nestedArray; //
+console.log(a,b,c);
+
+
+// -------- Object within Object --------
+let profile = {username:"haseeb", details:{email:"h@test.com", address:"Lahore"}};
+let {username, details:{email, address}} = profile; // nested object se values nikaal li
+console.log(username, email, address);
+
+
+
+//  Mix of Arrays/Objects --------
+let data = {id:1, info:[{name:"Hamzace"},{age:25}]}; 
+let {id, info:[{name:nm},{age:ag}]} = data;// mix me se values nikaal li
+console.log(id, nm, ag);
+
+
+
+// -------- Array Params in Fn --------
+function printCoordinates([x,y]){ console.log(x,y); }
+printCoordinates([10,20]);// array pass kr rhe h
+printCoordinates([5,15]);   // array pass kr rhe h
+
+
+// -------- Object Params in Fn --------
+function displayUser({name, age}){ console.log(name, age); }
+displayUser({name:"Sara", age:22});
+displayUser({name:"Hamza", age:30});
+// object pass kr rhe h
+
+
+
+// -------- List Property Names --------
+let book = {title:"Book1", author:"Author1", year:2021};// object
+console.log(Object.keys(book));
+
+
+
+// -------- Count Properties --------
+let student = {name:"Zara", age:20, grade:"A", school:"ABC"};
+console.log(Object.keys(student).length);//
+
+
+// kitni properties h
+
+
+
+// -------- Iterate Over Keys --------
+let product = {name:"Mobile", price:20000, category:"Electronics"};
+Object.keys(product).forEach(k => console.log(k, product[k])); //
+// keys pr iterate krke unki values print kr di
+
+
+// -------- List Property Values --------
+let movie = {title:"Inception", director:"Nolan", year:2010, genre:"Sci-Fi"};
+console.log(Object.values(movie)); // sirf values array form me milegi
+
+
+// -------- Sum Values --------
+let scores = {math:90, science:80, english:70};
+let total = Object.values(scores).reduce((a,b)=>a+b,0); 
+console.log(total); // sab subjects ka total banta hai
+
+
+// -------- Iterate Over Values --------
+let user = {username:"Haseeb", email:"h@test.com", location:"Karachi"};
+Object.values(user).forEach(v => console.log(v)); // har value ko alag print kr raha hai
+
+
+// -------- List Entries --------
+let car2 = {make:"Honda", model:"Civic", year:2022};
+console.log(Object.entries(car2)); // array of [key, value] pairs
+
+
+// -------- Convert Object to Array --------
+let person2 = {firstName:"Hamza", lastName:"Khan", age:28};
+console.log(Object.entries(person2)); // object ko array me change kiya
+
+
+// -------- Iterate Over Entries --------
+let settings2 = {theme:"light", notifications:true, privacy:"high"};
+Object.entries(settings2).forEach(([k,v])=>console.log(k,v)); 
+// har key aur value ko print krta hai
+
+
+// -------- Filter Keys --------
+let inventory = {apples:5, bananas:15, oranges:8, grapes:20};
+let keysFiltered = Object.keys(inventory).filter(k => inventory[k]>10);
+console.log(keysFiltered); // sirf wo keys jinki value >10
+
+
+// -------- Transform Values --------
+let temperatures = {morning:20, afternoon:30, evening:25};
+let newTemps = Object.fromEntries(
+  Object.entries(temperatures).map(([k,v])=>[k, (v*9/5)+32]) // Celsius se Fahrenheit
+);
+console.log(newTemps); // naya object with transformed values
+
+
+// -------- Key-Value Swap --------
+let roles = {admin:"A", editor:"E", viewer:"V"};
+let swapped = Object.fromEntries(Object.entries(roles).map(([k,v])=>[v,k]));
+console.log(swapped); // values aur keys swap ho gyi
+
+
+// -------- Filter + Map Fn --------
+let numbers = [1,2,3,4,5,6,7,8,9,10];
+function filterAndMap(arr, filterFn, mapFn){
+  return arr.filter(filterFn).map(mapFn);
+}
+console.log(filterAndMap(numbers, n=>n%2!==0, n=>n**2)); 
+// odd numbers ka square
+
+
+// -------- Sort + Reduce Fn --------
+let words = ["apple","banana","cherry","date"];
+function sortAndReduce(arr, sortFn, reduceFn){
+  return arr.sort(sortFn).reduce(reduceFn);
+}
+console.log(sortAndReduce(words, (a,b)=>a.localeCompare(b), (a,b)=>a+b)); 
+// sorted words ko add kr diya
+
+
+// -------- Simple Callback --------
+function greet(name, callback){
+  callback(`Hello, ${name}!`);
+}
+function printGreeting(msg){ console.log(msg); }
+greet("Haseeb", printGreeting); 
+// callback function msg print krta hai
+
+
+// -------- Async Callback --------
+function fetchData(callback){
+  setTimeout(()=>{ callback("Data from server"); }, 1000); }
+function displayData(data){ console.log(data); }
+fetchData(displayData); 
+// 1 sec baad async data show hoga
+
+
+// -------- Arrow Function --------
+let add = (a,b)=>a+b;
+console.log(add(3,5)); // arrow fn short syntax
+
+</script>
+</body>
+</html>

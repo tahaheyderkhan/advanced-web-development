@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page16-page30</title>
+</head>
+<body>
+    <script>
+// ******************* Formatting with tag fn *******************
+// function jo string ko uppercase krta h
+function upperTag(strings, ...values) {
+  return strings.map(str => str.toUpperCase()).join("") + values.join("").toUpperCase();
+}
+console.log(upperTag`hello world`); // HELLO WORLD
+
+
+
+//************* Conditional Logic ****************
+// time check aur msg print
+let hour = 14;
+let msg = `${hour < 12 ? "Good Morning" : "Good Afternoon"}`;
+console.log(msg); // Good Afternoon
+
+
+
+//*************== Loops in Template Literal *****************
+// array items ko <li> me convert
+let items = ["Apple", "Banana", "Mango"];
+let list = `<ul>${items.map(i => `<li>${i}</li>`).join("")}</ul>`;
+console.log(list); // <ul><li>Apple</li><li>Banana</li><li>Mango</li></ul>
+
+
+
+//********************* Escaping Backticks *********************
+// string me backtick print krna
+let str = `This is a backtick: \``;
+console.log(str); // This is a backtick: `
+
+
+
+//****************** Nested Template Literals  *********************
+// table rows aur cols bna rhe h
+let table = `
+<table>
+  ${[1,2,3].map(row => `
+    <tr>
+      ${[1,2,3].map(col => `<td>Row${row} Col${col}</td>`).join("")}
+    </tr>
+  `).join("")}
+</table>`;
+console.log(table); // table ka html code
+
+
+
+//****************** Simple Condition  *********************
+// age check for voting
+let age = 20;
+let canVote = age >= 18 ? "Yes" : "No";
+console.log(canVote); // Yes
+
+
+
+//****************** Even or Odd  *********************
+// num even ya odd check
+let num = 7;
+let evenOrOdd = num % 2 === 0 ? "Even" : "Odd";
+console.log(evenOrOdd); // Odd
+
+
+
+//****************** Grade Eval  *********************
+// score se grade assign
+let score = 85;
+let grade = score >= 90 ? "A" : score >= 80 ? "B" : score >= 70 ? "C" : score >= 60 ? "D" : "F";
+console.log(grade); // B
+ 
+
+
+//****************** Login Status  *********************
+// login status check
+let isLoggedIn = false;
+let statusMsg = isLoggedIn ? "Welcome back!" : "Please log in";
+console.log(statusMsg); // Please log in
+ 
+
+//****************** Discount Eligibility  *********************
+// discount only if member aur purchase > 100
+let isMember = true;
+let purchaseAmount = 150;
+let discount = isMember && purchaseAmount > 100 ? purchaseAmount * 0.1 : 0;
+console.log(discount); // 15
+
+
+
+//****************** Max Value  *********************
+// 2 values me se max return
+function maxValue(a, b) {
+  return a > b ? a : b;
+}
+console.log(maxValue(10, 20)); // 20
+
+
+
+//****************** Greeting fn  *********************
+// agar name empty h to guest otherwise name show
+function greet(name) {
+  return name ? `Hello, ${name}!` : "Hello, guest!";
+}
+console.log(greet("Haseeb")); // Hello, Haseeb!
+console.log(greet(""));       // Hello, guest!
+
+
+
+//****************** Mapping Values  *********************
+// even*2 aur odd*3
+let numbers = [1,2,3,4,5];
+let newArr = numbers.map(n => n % 2 === 0 ? n * 2 : n * 3);
+console.log(newArr); // [3,4,9,8,15]
+
+
+
+
+//****************** Filtering Values  *********************
+// sirf >3 length wale words
+let words = ["hi","hello","bye","yes","ok"];
+let filtered = words.filter(w => w.length > 3);
+console.log(filtered); // ["hello"]
+
+
+
+
+//****************** Copying Array  *********************
+// spread operator se copy
+let originalArray = [1,2,3];
+let copiedArray = [...originalArray];
+console.log(originalArray, copiedArray); // [1,2,3] [1,2,3]
+
+
+</script>
+
+</body>
+</html>

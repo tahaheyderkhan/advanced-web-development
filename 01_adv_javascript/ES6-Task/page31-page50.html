@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>page31-page50  
+
+  </title>
+</head>
+<body>
+<script>
+
+// ---------- Merging Arrays ---
+
+let array1 = [1,2,3];
+let array2 = [4,5,6];
+let mergedArray = [...array1, ...array2]; // dono array mila diye
+console.log(mergedArray)
+
+
+
+// ------ Adding Elements -------
+let numbers = [10,20,30];
+let updatedNumbers = [5, ...numbers, 40]; // start aur end me add
+console.log(updatedNumbers);
+
+
+
+// ---------- Copying Object ----------
+
+let originalObject = {a:1,b:2};
+let copiedObject = {...originalObject}; // copy bna di aur copiedObject me change krne se original pr asar nhi
+console.log(originalObject, copiedObject);
+
+
+
+// ---------- Merging Objects ----------
+
+let object1 = {x:1,y:2};
+let object2 = {y:3,z:4}; // y overlap hoga to object2 ki value rhegi 
+let mergedObject = {...object1, ...object2}; 
+console.log(mergedObject);
+
+
+// ---------- Updating Object ----------
+
+let user = {name:"Ali", age:25, email:"ali@test.com"};
+let updatedUser = {...user, email:"ali@new.com", address:"Karachi"}; // email update aur naya address add
+console.log(updatedUser); 
+
+
+
+// ---------- Passing Array as Args ----------
+
+function sum(a,b,c){ return a+b+c; }
+let arr = [2,4,6];
+console.log(sum(...arr)); // spread se are pass kr rhe h
+
+
+
+// ---------- Combine Multiple Arrays ----------
+
+function combineArrays(...arrays){ // multiele arrey
+  return [].concat(...arrays); // spread se merge kr rhe h
+}
+console.log(combineArrays([1,2],[3,4],[5,6]));
+
+
+
+// ---------- Rest Param with Spread ----------
+
+function multiply(factor, ...nums){
+  return nums.map(n => n*factor); // rest se array milega aur uske har element ko factor se multiply krke naya array return kr dega
+}
+console.log(multiply(2,1,2,3,4));
+
+
+
+// ---------- Spread with Nested ----------
+
+let nestedArray = [[1,2],[3,4]];
+let copyNested = [...nestedArray]; // shallow copy bna di Nested array ki
+copyNested[0][0] = 99;
+console.log(nestedArray, copyNested); // iska output aiga [[99,2],[3,4]] [[99,2],[3,4]] kionki shallow copy hai
+
+
+
+
+// ---------- Sum Function with Rest ----------
+
+function sumAll(...nums){ return nums.reduce((a,b)=>a+b,0); } // rest se array milega aur reduce se sum kr dega
+console.log(sumAll(1,2,3,4)); // 10
+
+
+
+
+// ---------- Average Function ----------
+function average(...nums){ return sumAll(...nums)/nums.length; }
+console.log(average(10,20,30));
+// ---------- First and Rest ----------
+let nums = [100,200,300,400,500];
+let [first,...rest] = nums;
+console.log(first, rest);
+
+
+
+// ---------- Skip and Rest ----------
+let colors = ["red","green","blue","yellow","pink"];
+let [ , , ...remainingColors] = colors; // pehle 2 skip
+console.log(remainingColors);
+
+
+// ---------- Object Destructuring ----------
+let person = {name:"Qazi", age:22, email:"Qazi@test.com", address:"Lahore"};
+let {name, email, ...otherInfo} = person;
+console.log(name, email, otherInfo);
+
+
+
+// ---------- Nested Destructuring ----------
+let student = {id:1, name:"Haseeb", grades:[90,80], info:{age:21, major:"CS"}};
+let {id, name:stdName, info:{major}, ...restInfo} = student; // name ko stdName kr diya
+console.log(id, stdName, major, restInfo);
+// ---------- Filter Even ----------
+function filterEven(...nums){ return nums.filter(n => n%2===0); }
+console.log(filterEven(1,2,3,4,5,6));
+// ---------- Combine and Sort ----------
+function combineAndSort(...arrays){ return [].concat(...arrays).sort((a,b)=>a-b); }
+console.log(combineAndSort([5,1],[9,3],[7,2]));
+
+
+
+// ---------- Basic Destructuring ----------
+let fruits = ["apple","banana","cherry"];
+let [firstFruit, secondFruit, thirdFruit] = fruits; // array ke elements ko alag variables me daal diya
+console.log(firstFruit, secondFruit, thirdFruit);
+
+
+
+// ---------- Skipping Elements ----------
+let shades = ["red","green","blue","yellow"];
+let [primaryColor, , tertiaryColor] = shades;
+console.log(primaryColor, tertiaryColor); // green skip hogaya
+
+
+
+// ---------- Rest Operator with Array ----------
+let moreNums = [1,2,3,4,5];
+let [firstNumber, ...remainingNumbers] = moreNums;
+console.log(firstNumber, remainingNumbers);
+
+
+
+</script>
+</body>
+</html>
