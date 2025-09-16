@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Marksheet</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 450px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      padding: 30px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      color: #444;
+      font-weight: 500;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    input:focus {
+      border-color: #2575fc;
+      outline: none;
+      box-shadow: 0 0 5px rgba(37,117,252,0.5);
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+    .marksheet {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      animation: slideUp 0.8s ease-in-out;
+    }
+    .marksheet h3 {
+      text-align: center;
+      color: #2575fc;
+    }
+    table {
+      width: 100%;
+      margin-top: 15px;
+      border-collapse: collapse;
+    }
+    table th, table td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+    table th {
+      background: #2575fc;
+      color: #fff;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🎓 Student Marksheet Generator</h2>
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter student name" />
+
+    <label for="roll">Roll Number:</label>
+    <input type="text" id="roll" placeholder="Enter roll number" />
+
+    <button id="generate">Generate Marksheet</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const students = [
+      { roll: "101", name: "Ali", marks: { Math: 85, Science: 78, English: 90, Computer: 88, History: 72 } },
+      { roll: "102", name: "Sara", marks: { Math: 75, Science: 82, English: 70, Computer: 65, History: 80 } },
+      { roll: "103", name: "Ahmed", marks: { Math: 95, Science: 89, English: 92, Computer: 94, History: 88 } },
+      { roll: "104", name: "Ayesha", marks: { Math: 60, Science: 65, English: 70, Computer: 72, History: 68 } },
+      { roll: "105", name: "Hamza", marks: { Math: 82, Science: 77, English: 85, Computer: 80, History: 74 } },
+      { roll: "106", name: "Fatima", marks: { Math: 91, Science: 95, English: 89, Computer: 90, History: 92 } },
+      { roll: "107", name: "Usman", marks: { Math: 55, Science: 60, English: 58, Computer: 62, History: 59 } },
+      { roll: "108", name: "Hina", marks: { Math: 78, Science: 72, English: 85, Computer: 88, History: 80 } },
+      { roll: "109", name: "Zain", marks: { Math: 68, Science: 70, English: 65, Computer: 72, History: 60 } },
+      { roll: "110", name: "Mariam", marks: { Math: 88, Science: 84, English: 90, Computer: 85, History: 87 } }
+    ];
+
+    const button = document.getElementById("generate");
+    const result = document.getElementById("result");
+
+    button.addEventListener("click", () => {
+      const name = document.getElementById("name").value.trim();
+      const roll = document.getElementById("roll").value.trim();
+
+      const student = students.find(s => s.roll === roll || s.name.toLowerCase() === name.toLowerCase());
+
+      if (!student) {
+        result.innerHTML = `<p style="color:red; text-align:center;">❌ Student not found!</p>`;
+        return;
+      }
+
+      let total = 0;
+      let rows = "";
+      for (let subject in student.marks) {
+        rows += `<tr><td>${subject}</td><td>${student.marks[subject]}</td></tr>`;
+        total += student.marks[subject];
+      }
+      const percentage = (total / (Object.keys(student.marks).length * 100) * 100).toFixed(2);
+
+      result.innerHTML = `
+        <div class="marksheet">
+          <h3>📄 Marksheet</h3>
+          <p><strong>Name:</strong> ${student.name}</p>
+          <p><strong>Roll No:</strong> ${student.roll}</p>
+          <table>
+            <tr><th>Subject</th><th>Marks</th></tr>
+            ${rows}
+          </table>
+          <p><strong>Total:</strong> ${total}</p>
+          <p><strong>Percentage:</strong> ${percentage}%</p>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
